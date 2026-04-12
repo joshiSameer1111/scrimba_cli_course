@@ -1,0 +1,14 @@
+{
+  "name": "Scrim-s06inhf",
+  "description": "https://scrimba.com/the-backend-developer-path-c0tbi0l98f/~04fg/s0t8oip2mq/head",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vite": "latest"
+  },
+  "devDependencies": {}
+}
