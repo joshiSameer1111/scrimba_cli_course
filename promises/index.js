@@ -5,5 +5,5 @@ async function getSuggestion() {
 }
 getSuggestion() 
 
-// What would the resolved state of the promise "We'll let you know within a week," look like? 
-Promise.resolve("We'll let you know within a week,")
+// What would the rejected state of the promise "We'll let you know within a week," look like?
+Promise.reject("We'll let you know within a week,")
