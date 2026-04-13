@@ -27,7 +27,7 @@ try {
         {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json' // Added header to specify the content type of the request body
             },
                 body: JSON.stringify({
                 title: "Holiday Nightmares",
