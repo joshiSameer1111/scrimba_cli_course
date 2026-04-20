@@ -13,6 +13,7 @@ Challenge:
 1. Access the ‘setHeader’ method on the response object and pass in two strings to set the      
    Content-Type to ‘application/json’ - watch out for casing! 
 */
+    res.statusCode = 200
     res.setHeader('Content-Type', 'application/json')
     res.end(JSON.stringify(destinations))
   }
