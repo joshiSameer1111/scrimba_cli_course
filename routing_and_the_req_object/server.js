@@ -7,10 +7,13 @@ const server = http.createServer( (req, res)=> {
 
 console.log(req.url)
 
-  if (req.url === '/api') {
-    res.end('This is from the server')
+  if (req.method === 'GET') {
+   if (req.url === '/api') {
+    res.end('This is a GET request')
+   }
+    
   } else {
-    res.end('Not Found')
+    res.end('Method not allowed')
   }
 })
 
