@@ -8,44 +8,52 @@ const PORT = 8000
 const server = http.createServer(async (req, res) => {
   const destinations = await getDataFromDB()
 
-/*
-  Challenge:
-  1. Complete the two lines of code below.
-     hint.md for help!
-*/
+  const urlObj = new URL(req.url, `http://${req.headers.host}`)
+  const queryObj = Object.fromEntries(urlObj.searchParams)
 
-const urlObj = new URL(req.url, `http://${req.headers.host}`)
+  if (urlObj.pathname === '/api' && req.method === 'GET') {
 
-const queryObj = Object.fromEntries(urlObj.searchParams)
+    let filteredDestinations = destinations
 
-  console.log(queryObj)
+    // apply query filters (e.g. ?continent=asia)
+    if (queryObj.continent) {
+      filteredDestinations = getDataByPathParams(
+        filteredDestinations,
+        'continent',
+        queryObj.continent
+      )
+    }
 
+    if (queryObj.country) {
+      filteredDestinations = getDataByPathParams(
+        filteredDestinations,
+        'country',
+        queryObj.country
+      )
+    }
 
-  if (req.url === '/api' && req.method === 'GET') {
+    sendJSONResponse(res, 200, filteredDestinations)
 
-    sendJSONResponse(res, 200, destinations)
+  } else if (urlObj.pathname.startsWith('/api/continent') && req.method === 'GET') {
 
-  } else if (req.url.startsWith('/api/continent') && req.method === 'GET') {
-
-    const continent = req.url.split('/').pop()
+    const continent = urlObj.pathname.split('/').pop()
     const filteredData = getDataByPathParams(destinations, 'continent', continent)
+
     sendJSONResponse(res, 200, filteredData)
 
-  } else if (req.url.startsWith('/api/country') && req.method === 'GET') {
+  } else if (urlObj.pathname.startsWith('/api/country') && req.method === 'GET') {
 
-    const country = req.url.split('/').pop()
+    const country = urlObj.pathname.split('/').pop()
     const filteredData = getDataByPathParams(destinations, 'country', country)
+
     sendJSONResponse(res, 200, filteredData)
 
-  } 
-  
-  else {
+  } else {
 
-    res.setHeader('Content-Type', 'application/json')
-    sendJSONResponse(res, 404, ({
+    sendJSONResponse(res, 404, {
       error: "not found",
       message: "The requested route does not exist"
-    }))   
+    })
 
   }
 })
