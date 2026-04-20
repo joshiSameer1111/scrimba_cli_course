@@ -1,0 +1,20 @@
+{
+  "name": "wild-horizons",
+  "version": "1.0.0",
+  "description": "a dadaset of the planet's most interesting places",
+  "homepage": "https://github.com/joshiSameer1111/scrimba_cli_course#readme",
+  "bugs": {
+    "url": "https://github.com/joshiSameer1111/scrimba_cli_course/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshiSameer1111/scrimba_cli_course.git"
+  },
+  "license": "ISC",
+  "author": "sameer joshi",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
